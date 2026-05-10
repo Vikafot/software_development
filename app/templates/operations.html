@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Операции{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Мои операции</h2>
+    <form method="GET" action="{{ url_for('operations.operations_view') }}">
+        <label for="currency">Валюта:</label>
+        <select name="currency" id="currency" onchange="this.form.submit()">
+            <option value="RUB" {% if currency == 'RUB' %}selected{% endif %}>RUB</option>
+            <option value="USD" {% if currency == 'USD' %}selected{% endif %}>USD</option>
+            <option value="EUR" {% if currency == 'EUR' %}selected{% endif %}>EUR</option>
+        </select>
+    </form>
+    {% if operations %}
+    <table>
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Тип</th>
+                <th>Сумма ({{ currency }})</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for op in operations %}
+            <tr>
+                <td>{{ op.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>{{ 'Доход' if op.type_operation == 'income' else 'Расход' }}</td>
+                <td>{{ "%.2f"|format(op.converted_sum) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Операций пока нет.</p>
+    {% endif %}
+
+    <a href="{{ url_for('operations.add_operation_page') }}" class="add-operation-btn">Добавить операцию</a>
+</div>
+{% endblock %}

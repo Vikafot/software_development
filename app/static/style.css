@@ -1,0 +1,361 @@
+:root {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #ffffff;
+    --text-primary: #2d3436;
+    --text-secondary: #636e72;
+    --accent: #2d3436;
+    --accent-hover: #00b894;
+    --border: #e0e0e0;
+    --shadow: 0 8px 24px rgba(0,0,0,0.1);
+    --shadow-hover: 0 12px 32px rgba(0,0,0,0.15);
+    --radius: 8px;
+    --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-main); background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+
+h2 {
+    text-align: center;
+    margin: 0 auto 2rem;
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.nav {
+    background: var(--bg-secondary);
+    width: 66%;
+    max-width: 960px;
+    margin: 1.5rem auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 1.5rem;
+    z-index: 100;
+    overflow: hidden;
+
+    display: flex;
+    align-items: stretch;
+    padding: 0;
+    height: 60px;
+}
+
+.nav a {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    background: transparent;
+}
+
+.nav a:hover {
+    background: var(--bg-primary);
+    color: var(--accent);
+}
+
+.nav a[href*="logout"] {
+    background: #ff757534;
+    color: var(--text-primary);
+    padding: 0.5rem 1.2rem;
+}
+
+.nav a[href*="logout"]:hover {
+    background: #d63030;
+    color: white;
+}
+
+.nav a[href*="delete_account"] {
+    background: #fdcb6e2d;
+    color: var(--text-primary);
+    padding: 0.5rem 1.2rem;
+}
+
+.nav a[href*="delete_account"]:hover {
+    background: #e1b12c;
+    color: var(--text-primary);
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+form {
+    background: var(--bg-secondary);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 480px;
+    margin: 3rem auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.9rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--bg-secondary);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(45, 52, 54, 0.1);
+}
+
+button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 184, 148, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.operations-container {
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin: 2.5rem auto;
+    max-width: 960px;
+}
+
+.operations-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, var(--accent) 0%, #636e72 100%);
+    color: white;
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.operations-header h2 {
+    margin: 0;
+    flex: 1;
+}
+
+.currency-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.currency-selector label {
+    color: white;
+    margin: 0;
+    font-weight: 500;
+}
+
+.currency-selector select {
+    margin: 0;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+.currency-selector select:focus {
+    background: rgba(255,255,255,0.3);
+    box-shadow: none;
+}
+
+.currency-selector select option {
+    background: var(--accent);
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 1.2rem 2rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background: var(--bg-primary);
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background: #f8f9fa;
+}
+
+.add-operation-btn {
+    display: inline-block;
+    background: var(--accent-hover);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 184, 148, 0.25);
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.add-operation-btn:hover {
+    background: #00a383;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 184, 148, 0.35);
+}
+
+.add-operation-btn:active {
+    transform: translateY(-1px);
+}
+
+.error, .success {
+    margin-left: 33%;
+    margin-right: 33%;
+    padding: 1.2rem 2rem;
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.error {
+    background: #ffeaea;
+    color: #d63031;
+}
+
+.success {
+    background: #e8f5e9;
+    color: #00b894;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: var(--text-primary);
+}
+
+.btn-delete {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    width: auto;
+    min-width: 200px;
+}
+
+.btn-delete:hover {
+    background: #e84118;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+}
+
+.btn-cancel {
+    display: inline-block;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    padding: 1rem 2rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-cancel:hover {
+    background: var(--bg-primary);
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .nav {
+        width: 95%;
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+    }
+    
+    .operations-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    th, td {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    form {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+}

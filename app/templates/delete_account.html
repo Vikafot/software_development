@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Удалить аккаунт{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Удаление аккаунта</h2>
+    <div style="background: #fff3cd; padding: 15px; border: 1px solid #ffc107; margin: 20px 0; border-radius: var(--radius);">
+        <strong>Внимание!</strong> Это действие необратимо. Все ваши операции будут удалены.
+    </div>
+    
+    <form method="POST" action="{{ url_for('account.delete_account') }}">
+        <p style="margin-bottom: 1.5rem;">Вы уверены, что хотите удалить аккаунт <strong>{{ current_user.name }}</strong>?</p>
+        
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <button type="submit" class="btn-delete" onclick="return confirm('Это действие нельзя отменить. Продолжить?')">
+                Да, удалить аккаунт
+            </button>
+            
+            <a href="{{ url_for('operations.operations_view') }}" class="btn-cancel">Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

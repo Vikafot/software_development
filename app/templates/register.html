@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Регистрация</h2>
+    <form method="POST" action="{{ url_for('auth.register') }}">
+        <label for="login">Логин:</label>
+        <input type="text" id="login" name="login" required>
+        
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</div>
+{% endblock %}
