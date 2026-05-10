@@ -4,6 +4,8 @@
 {% block content %}
 <div class="container">
     <h2>Добавить операцию</h2>
+    <div id="msg-box" class="msg-box" style="display: none;"></div>
+    
     <form id="opForm">
         <label for="type_operation">Тип:</label>
         <select name="type_operation" id="type_operation" required>
@@ -25,29 +27,40 @@
 </div>
 
 <script>
-document.getElementById('opForm').addEventListener('submit', async function(e) {
+const form = document.getElementById('opForm');
+const msgBox = document.getElementById('msg-box');
+
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
-    data.sum = parseFloat(data.sum);
+    msgBox.style.display = 'none';
+
+    const payload = {
+        type_operation: form.type_operation.value,
+        sum: parseFloat(form.sum.value),
+        date: new Date(form.date.value).toISOString(),
+        chat_id: form.chat_id.value || null
+    };
 
     try {
-        const response = await fetch("{{ url_for('operations.add_operation_page') }}", {
+        const res = await fetch("{{ url_for('operations.add_operation_page') }}", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            body: JSON.stringify(payload)
         });
 
-        if (response.ok) {
-            window.location.href = "{{ url_for('operations.operations_view') }}";
+        const data = await res.json();
+        msgBox.style.display = 'block';
+
+        if (res.ok) {
+            window.location.href = "{{ url_for('operations.operations_view') }}?status=added";
         } else {
-            const err = await response.json();
-            alert(err.error || 'Ошибка сохранения');
+            msgBox.className = 'error';
+            msgBox.textContent = data.error || 'Ошибка сохранения';
         }
-    } catch (error) {
-        console.error(error);
-        alert('Ошибка сети');
+    } catch {
+        msgBox.style.display = 'block';
+        msgBox.className = 'error';
+        msgBox.textContent = 'Ошибка сети';
     }
 });
 </script>

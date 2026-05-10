@@ -3,6 +3,29 @@
 {% block title %}Операции{% endblock %}
 
 {% block content %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('status') === 'added') {
+        const box = document.createElement('div');
+        box.className = 'msg-box success';
+        box.textContent = 'Операция успешно добавлена';
+        
+        const container = document.querySelector('.container');
+        if (container) {
+            container.prepend(box);
+            
+            setTimeout(() => {
+                box.style.transition = 'opacity 0.3s ease';
+                box.style.opacity = '0';
+                setTimeout(() => box.remove(), 300);
+            }, 1000);
+        }
+        
+        history.replaceState({}, '', window.location.pathname);
+    }
+});
+</script>
 <div class="container">
     <h2>Мои операции</h2>
     <form method="GET" action="{{ url_for('operations.operations_view') }}">
